@@ -7,26 +7,38 @@ const {
   createItem,
   deleteItem,
 } = require("../controllers/tracks");
-const { validateId, validateObjectDataCreate, validateObjectDataUpdate } = require("../validators/tracks");
+const authMiddleware = require("../middleware/auth");
+const authRolMiddleware = require("../middleware/rol");
+const {
+  validateId,
+  validateObjectDataCreate,
+  validateObjectDataUpdate,
+} = require("../validators/tracks");
 /**
  * Route get items from database
  */
-router.get("/", getItems);
+router.get("/", authMiddleware, getItems);
 /**
  * Route get item for detail
  */
-router.get("/:id", validateId, getItem);
+router.get("/:id", authMiddleware, validateId, getItem);
 /**
  * Route for create row for track
  */
-router.post("/", validateObjectDataCreate, createItem);
+router.post(
+  "/",
+  authMiddleware,
+  authRolMiddleware(["admin"]),
+  validateObjectDataCreate,
+  createItem
+);
 /**
  * Route for update track
  */
-router.put("/:id", validateObjectDataUpdate, updateItem);
+router.put("/:id", authMiddleware, validateObjectDataUpdate, updateItem);
 /**
  * Route get item for detail
  */
-router.delete("/:id", validateId, deleteItem);
+router.delete("/:id", authMiddleware, validateId, deleteItem);
 
 module.exports = router;
