@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 const { matchedData } = require("express-validator");
 const { handleHttpError } = require("../utils/handleError");
 const { tracksModel } = require("../models");
@@ -23,11 +23,13 @@ const getItem = async (req, res) => {
         },
       },
       { $unwind: "$audio" },
-      {$match:{
-        _id:mongoose.Types.ObjectId(id)
-      }}
+      {
+        $match: {
+          _id: mongoose.Types.ObjectId(id),
+        },
+      },
     ]);
-    
+
     res.send({ data });
   } catch (e) {
     handleHttpError(res, e);

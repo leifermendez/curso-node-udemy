@@ -15,15 +15,81 @@ const {
   validateObjectDataUpdate,
 } = require("../validators/tracks");
 /**
- * Route get items from database
+ * Get all tracks
+ * @swagger
+ * /tracks:
+ *    get:
+ *      tags:
+ *        - tracks
+ *      summary: "List all tracks"
+ *      description: List all tracks with details
+ *      security:
+ *        - bearerAuth: []
+ *      responses:
+ *        '200':
+ *          description: .
+ *        '402':
+ *          description: Not allow because you need more permissions
+ *    responses:
+ *      '201':
+ *        description: retorna el objeto insertado en la coleccion con stado '201'
  */
 router.get("/", authMiddleware, getItems);
 /**
- * Route get item for detail
+ * Get track
+ * @swagger
+ * /tracks/{id}:
+ *    get:
+ *      tags:
+ *        - tracks
+ *      summary: "Get track"
+ *      description: Get track detail
+ *      responses:
+ *        '200':
+ *          description: Retorna el objeto insertado en la coleccion.
+ *        '422':
+ *          description: Error de validacion.
+ *      security:
+ *        - bearerAuth: []
+ *      parameters:
+ *        -  in: "path"
+ *           name: "id"
+ *           description: "ID track"
+ *           required: true
+ *           schema:
+ *              type: string
+ *    responses:
+ *      '201':
+ *        description: retorna el objeto insertado en la coleccion con stado '201'
+ * 
  */
 router.get("/:id", authMiddleware, validateId, getItem);
 /**
- * Route for create row for track
+ * Post new track
+ * @swagger
+ * /tracks:
+ *    post:
+ *      tags:
+ *        - tracks
+ *      summary: "Add track"
+ *      description: Add new track with detail
+ *      responses:
+ *        '200':
+ *          description: Retorna el objeto insertado en la coleccion.
+ *        '422':
+ *          description: Error de validacion.
+ *      security:
+ *        - bearerAuth: []
+ *      parameters:
+ *        -  in: "body"
+ *           name: "body"
+ *           description: "parametros requeridos para insertar comentrario"
+ *           required: true
+ *           schema:
+ *              $ref: "#/definitions/track"
+ *    responses:
+ *      '201':
+ *        description: retorna el objeto insertado en la coleccion con stado '201'
  */
 router.post(
   "/",
