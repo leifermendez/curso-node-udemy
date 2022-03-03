@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./app.js",
-    "dev": "nodemon ./app.js",
+    "start": "cross-env NODE_ENV=production node ./app.js",
+    "dev": "cross-env NODE_ENV=development nodemon ./app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@slack/webhook": "^6.1.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
@@ -22,12 +23,17 @@
     "mongoose-aggregate-paginate-v2": "^1.0.6",
     "mongoose-delete": "^0.5.4",
     "mongoose-paginate-v2": "^1.6.3",
+    "morgan-body": "^2.6.6",
     "multer": "^1.4.4",
     "mysql2": "^2.3.3",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
+    "strip-ansi": "^7.0.1",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.3.0",
     "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

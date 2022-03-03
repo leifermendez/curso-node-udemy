@@ -10,19 +10,13 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerDefinition = {
   openapi: "3.0.0",
   info: {
-    title: "Sample Pet Store App",
-    description: "This is a sample server for a pet store.",
-    termsOfService: "http://example.com/terms/",
+    title: "API Spotify",
+    description: "Esta documentación de api de genera automaticamente",
     contact: {
-      name: "API Support",
-      url: "http://www.example.com/support",
-      email: "support@example.com",
-    },
-    license: {
-      name: "Apache 2.0",
-      url: "https://www.apache.org/licenses/LICENSE-2.0.html",
-    },
-    version: "1.0.1",
+      name: "Curso AWS",
+      url: "https://link.codigoencasa.com/CURSO",
+      email: "leifer.contacto@gmail.com",
+    }
   },
   servers: [
     {

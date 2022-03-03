@@ -99,11 +99,66 @@ router.post(
   createItem
 );
 /**
- * Route for update track
+ * Upadte new track
+ * @swagger
+ * /tracks/{id}:
+ *    put:
+ *      tags:
+ *        - tracks
+ *      summary: "Update track"
+ *      description: Update track with detail
+ *      responses:
+ *        '200':
+ *          description: Retorna el objeto insertado en la coleccion.
+ *        '422':
+ *          description: Error de validacion.
+ *      security:
+ *        - bearerAuth: []
+ *      parameters:
+ *        -  in: "body"
+ *           name: "body"
+ *           description: "parametros requeridos para insertar comentrario"
+ *           required: true
+ *           schema:
+ *              $ref: "#/definitions/track"
+ *        -  in: "path"
+ *           name: "id"
+ *           description: "ID track"
+ *           required: true
+ *           schema:
+ *              type: string
+ *    responses:
+ *      '201':
+ *        description: retorna el objeto insertado en la coleccion con stado '201'
  */
 router.put("/:id", authMiddleware, validateObjectDataUpdate, updateItem);
 /**
- * Route get item for detail
+ * Delete track
+ * @swagger
+ * /tracks/{id}:
+ *    delete:
+ *      tags:
+ *        - tracks
+ *      summary: "Delete track"
+ *      description: Delete track detail
+ *      responses:
+ *        '200':
+ *          description: Retorna el objeto insertado en la coleccion.
+ *        '422':
+ *          description: Error de validacion.
+ *      security:
+ *        - bearerAuth: []
+ *      parameters:
+ *        -  in: "path"
+ *           name: "id"
+ *           description: "ID track"
+ *           required: true
+ *           schema:
+ *              type: string
+ *    responses:
+ *      '201':
+ *        description: retorna el objeto insertado en la coleccion con stado '201'
+ * 
  */
 router.delete("/:id", authMiddleware, validateId, deleteItem);
 
