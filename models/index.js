@@ -1,8 +1,12 @@
 const engine = process.env.DB_ENGINE || null;
-const modelsNotSql = {
-  tracksModel: require("./nosql/tracks"),
-  storageModel: require("./nosql/storage"),
-  userModel: require("./nosql/user"),
+
+const pathModel = engine === "mysql" ? "./sql" : "./nosql"
+
+const models = {
+  userModel: require(`${pathModel}/users`),
+  storageModel: require(`${pathModel}/storage`),
+  tracksModel: require(`${pathModel}/tracks`),
 };
 
-module.exports = engine === "mysql" ? modelsNotSql : modelsNotSql;
+
+module.exports = models;

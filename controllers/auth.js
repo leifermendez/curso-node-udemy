@@ -10,9 +10,9 @@ const { matchedData } = require("express-validator");
 
 /**
  * Controller for login
- * @param {*} req 
- * @param {*} res 
- * @returns 
+ * @param {*} req
+ * @param {*} res
+ * @returns
  */
 const loginCtrl = async (req, res) => {
   try {
@@ -36,8 +36,7 @@ const loginCtrl = async (req, res) => {
       user: user,
     };
 
-    res.send({data})
-
+    res.send({ data });
   } catch (e) {
     handleHttpError(res, e);
   }
@@ -45,21 +44,24 @@ const loginCtrl = async (req, res) => {
 
 /**
  * Controller for register
- * @param {*} req 
- * @param {*} res 
- * @returns 
+ * @param {*} req
+ * @param {*} res
+ * @returns
  */
 const registerCtrl = async (req, res) => {
   try {
     const body = matchedData(req);
-    const checkIsExist = await userModel.findOne({ email: body.email });
+    const checkIsExist = await userModel.findOne({
+      where: { email: body.email },
+    });
+    // const checkIsExist = await userModel.findOne({ email: body.email });
     if (checkIsExist) {
       handleErrorResponse(res, "USER_EXISTS", 401);
       return;
     }
     const password = await encrypt(body.password);
     const bodyInsert = { ...body, password };
-    const data = await userModel.create(bodyInsert);
+    // const data = await userModel.create(bodyInsert);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, e);
