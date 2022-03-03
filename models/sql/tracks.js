@@ -1,17 +1,17 @@
 const { sequelize } = require("../../config/mysql");
 const { DataTypes } = require("sequelize");
 
-const user = sequelize.define(
-  "users",
+const Tracks = sequelize.define(
+  "tracks",
   {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    age: {
-      type: DataTypes.NUMBER,
+    album: {
+      type: DataTypes.STRING,
     },
-    email: {
+    mediaId: {
       type: DataTypes.STRING,
     },
     password: {
@@ -26,4 +26,4 @@ const user = sequelize.define(
   }
 );
 
-module.exports = user;
+module.exports = Tracks;

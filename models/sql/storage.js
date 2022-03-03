@@ -1,29 +1,20 @@
 const { sequelize } = require("../../config/mysql");
 const { DataTypes } = require("sequelize");
 
-const user = sequelize.define(
-  "users",
+const Storage = sequelize.define(
+  "storages",
   {
-    name: {
+    url: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    age: {
+    filename: {
       type: DataTypes.NUMBER,
-    },
-    email: {
-      type: DataTypes.STRING,
-    },
-    password: {
-      type: DataTypes.STRING,
-    },
-    role: {
-      type: DataTypes.ENUM(["user", "admin"]),
-    },
+    }
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = user;
+module.exports = Storage;
